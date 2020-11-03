@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>LTFC Drowning Alert System</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"/>
+		<link rel="stylesheet" href="index.css"/>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" defer=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" defer=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js" defer=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js" defer=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.6.0/dist/tf.es2017.min.js" defer=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.4/dist/teachablemachine-image.min.js" defer=""></script>
+		<script src="https://cdn.jsdelivr.net/npm/tone@14.7.58/build/Tone.min.js" defer=""></script>
+		<script src="index.js" defer=""></script>
+	</head>
+	<body class="loading m-1">
+		<div id="loading" class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>
+		<div id="controls" class="container">
+			<div class="form-group row">
+				<label for="cameraSelect" class="col-auto col-form-label">Cameras</label>
+				<select id="cameraSelect" class="col-6 selectpicker" multiple="" data-actions-box="true"></select>
+				<span class="col-auto">
+					<label for="detectionSwitch" class="pr-4 col-form-label">Detection</label>
+					<input id="detectionSwitch" type="checkbox" data-toggle="switchbutton"/>
+					<span class="pl-2">(<span id="detectionFrameRate">-</span> FPS)</span>
+				</span>
+				<span class="col-auto">
+					<label for="testModeSwitch" class="pr-4 col-form-label">Test Mode</label>
+					<input id="testModeSwitch" type="checkbox" data-toggle="switchbutton"/>
+				</span>
+			</div>
+			<form id="alertRuleForm" class="form-inline form-group row">
+				<div class="col-auto col-form-label">Alert Rule</div>
+				<div class="col-auto">Average Drowning Probability from Last <input id="sampleSizeInput" class="form-control" type="number" min="1" step="1" value="100" required="" disabled=""/> Detections >= <input id="probabilityThresholdInput" class="form-control" type="number" min="0" max="100" step="1" value="50" required="" disabled=""/>% <button id="editButton" class="btn btn-primary" type="button">Edit</button><span id="editModeButtons" class="d-none"><button class="btn btn-success" type="submit" disabled="">Set</button> <button class="btn btn-dark" type="reset" disabled="">Reset</button></span></div>
+			</form>
+		</div>
+		<div id="cameras"></div>
+		<template id="cameraTemplate">
+			<div class="cameraContainer">
+				<video playsinline=""></video>
+				<div class="probabilityContainer"><small class="probability"></small></div>
+			</div>
+		</template>
+		<div id="visualAlert" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-danger text-white">
+						<h5 class="modal-title">Possible Drowning</h5>
+					</div>
+					<div class="modal-body">
+						<p>Possible drowning has been detected!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal">Dismiss</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+body.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+body:not(.loading) > #loading, body.loading > #controls, body.loading > #cameras {
+	display: none;
+}
+#cameras {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem;
+}
+.cameraContainer {
+	position: relative;
+	border: 0.25rem solid transparent;
+}
+.cameraContainer.alertTarget {
+	border: 0.25rem solid red;
+}
+video {
+	display: block;
+	max-width: 100%;
+}
+.probabilityContainer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	z-index: 10;
+	text-align: center;
+}
+.probability {
+	background-color: white;
+}
