@@ -287,6 +287,7 @@
 			for (const c of activeCameras.values()) {
 				c.probabilityRecords.splice(0);
 				const cameraContainer = c.videoElement.parentElement;
+				document.body.classList.remove("alertActivated");
 				cameraContainer.classList.remove("alertTarget");
 				cameraContainer.querySelector(".probability").textContent = "";
 			}
