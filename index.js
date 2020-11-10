@@ -255,8 +255,10 @@
 					}
 				}
 				else {
-					cameraContainer.classList.remove("alertTarget");
-					document.body.classList.remove("alertActivated");
+					if (isTestMode === true) {
+						cameraContainer.classList.remove("alertTarget");
+						document.body.classList.remove("alertActivated");
+					}
 				}
 			}
 			else {
