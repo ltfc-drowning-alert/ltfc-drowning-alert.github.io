@@ -244,7 +244,7 @@
 					else {
 						if (document.getElementById("visualAlert") === null) {
 							const visualAlert = document.importNode(visualAlertTemplate.content, true);
-							const visualAlert_JQ = $(visualAlert);
+							const visualAlert_JQ = $(visualAlert.getElementById("visualAlert"));
 							visualAlert_JQ.alert();
 							visualAlert_JQ.on("close.bs.alert", () => {
 								console.log("close.bs.alert");
