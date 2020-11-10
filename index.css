@@ -6,6 +6,10 @@ body.loading {
 body:not(.loading) > #loading, body.loading > #controls, body.loading > #cameras {
 	display: none;
 }
+body.alert {
+	background-color: red;
+	color: white;
+}
 #cameras {
 	display: flex;
 	flex-wrap: wrap;
@@ -17,7 +21,7 @@ body:not(.loading) > #loading, body.loading > #controls, body.loading > #cameras
 	border: 0.25rem solid transparent;
 }
 .cameraContainer.alertTarget {
-	border: 0.25rem solid red;
+	border: 0.25rem solid yellow;
 }
 video {
 	display: block;
