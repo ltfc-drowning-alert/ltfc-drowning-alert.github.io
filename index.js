@@ -248,6 +248,10 @@
 							visualAlert_JQ.alert();
 							visualAlert_JQ.on("close.bs.alert", () => {
 								alarm.stop();
+								document.body.classList.remove("alertActivated");
+								for (const t of document.querySelectorAll(".alertTarget")) {
+									t.classList.remove("alertTarget");
+								}
 							});
 							document.body.appendChild(visualAlert);
 							alarm.start();
@@ -286,10 +290,10 @@
 			continuePrediction = false;
 			lastPredictionTime = 0;
 			detectionFrameRateDisplay.textContent = "-";
+			document.body.classList.remove("alertActivated");
 			for (const c of activeCameras.values()) {
 				c.probabilityRecords.splice(0);
 				const cameraContainer = c.videoElement.parentElement;
-				document.body.classList.remove("alertActivated");
 				cameraContainer.classList.remove("alertTarget");
 				cameraContainer.querySelector(".probability").textContent = "";
 			}
