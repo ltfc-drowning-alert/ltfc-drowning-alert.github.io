@@ -247,11 +247,7 @@
 							const visualAlert_JQ = $(visualAlert.getElementById("visualAlert"));
 							visualAlert_JQ.alert();
 							visualAlert_JQ.on("close.bs.alert", () => {
-								console.log("close.bs.alert");
 								alarm.stop();
-							});
-							visualAlert_JQ.on("closed.bs.alert", () => {
-								console.log("closed.bs.alert");
 							});
 							document.body.appendChild(visualAlert);
 							alarm.start();
