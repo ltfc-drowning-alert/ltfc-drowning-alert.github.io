@@ -248,6 +248,7 @@
 							visualAlert_JQ.alert();
 							visualAlert_JQ.on("close.bs.alert", () => {
 								alarm.stop();
+								isAudioAlarmOn = false;
 								document.body.classList.remove("alertActivated");
 								for (const t of document.querySelectorAll(".alertTarget")) {
 									t.classList.remove("alertTarget");
@@ -255,6 +256,7 @@
 							});
 							document.body.appendChild(visualAlert);
 							alarm.start();
+							isAudioAlarmOn = true;
 						}
 					}
 				}
@@ -287,6 +289,7 @@
 		}
 		else {
 			alarm.stop();
+			isAudioAlarmOn = false;
 			continuePrediction = false;
 			lastPredictionTime = 0;
 			detectionFrameRateDisplay.textContent = "-";
