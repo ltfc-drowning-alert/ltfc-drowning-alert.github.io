@@ -6,7 +6,7 @@ body.loading {
 body:not(.loading) > #loading, body.loading > #controls, body.loading > #cameras {
 	display: none;
 }
-body.alert {
+body.alertActivated {
 	background-color: red;
 	color: white;
 }

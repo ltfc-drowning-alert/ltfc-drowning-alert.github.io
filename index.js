@@ -240,7 +240,7 @@
 				cameraContainer.querySelector(".probability").textContent = (avgProbability * 100).toFixed(2) + "%";
 				if (avgProbability >= probabilityThreshold) {
 					cameraContainer.classList.add("alertTarget");
-					document.body.classList.add("alert");
+					document.body.classList.add("alertActivated");
 					hasPossibleDrowning = true;
 					if (isTestMode === true) {
 						if (isAudioAlarmOn === false) {
@@ -254,7 +254,7 @@
 				}
 				else {
 					cameraContainer.classList.remove("alertTarget");
-					document.body.classList.remove("alert");
+					document.body.classList.remove("alertActivated");
 				}
 			}
 			else {
