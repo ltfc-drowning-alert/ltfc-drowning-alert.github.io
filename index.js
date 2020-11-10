@@ -184,18 +184,11 @@
 
 	const detectionSwitch = document.getElementById("detectionSwitch");
 	const detectionFrameRateDisplay = document.getElementById("detectionFrameRate");
-	const visualAlert = $(document.getElementById("visualAlert"));
+	const visualAlertTemplate = document.getElementById("visualAlertTemplate");
+	
 	let lastPredictionTime = 0;
 	let isAudioAlarmOn = false;
 	let isTestMode = false;
-
-	visualAlert.on("show.bs.modal", () => {
-		alarm.start();
-	});
-
-	visualAlert.on("hide.bs.modal", () => {
-		alarm.stop();
-	});
 
 	async function predictLoop(timestamp) {
 		if (continuePrediction === false) {
@@ -249,7 +242,14 @@
 						}
 					}
 					else {
-						visualAlert.modal("show");
+						const visualAlert = document.importNode(visualAlertTemplate.content, true);
+						const visualAlert_JQ = $(visualAlert);
+						visualAlert_JQ.alert();
+						visualAlert_JQ.on("close.bs.alert", () => {
+							alarm.stop();
+						})
+						document.body.appendChild(visualAlert);
+						alarm.start();
 					}
 				}
 				else {

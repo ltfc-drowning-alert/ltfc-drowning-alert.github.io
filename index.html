@@ -45,20 +45,10 @@
 				<div class="probabilityContainer"><small class="probability"></small></div>
 			</div>
 		</template>
-		<div id="visualAlert" class="modal" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header bg-danger text-white">
-						<h5 class="modal-title">Possible Drowning</h5>
-					</div>
-					<div class="modal-body">
-						<p>Possible drowning has been detected!</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-dismiss="modal">Dismiss</button>
-					</div>
-				</div>
+		<template id="visualAlertTemplate">
+			<div id="visualAlert" class="alert alert-danger alert-dismissible" role="alert">
+				<strong>Possible drowning has been detected!</strong><button type="button" class="close btn btn-light" data-dismiss="alert" aria-label="Close">Dismiss</button>
 			</div>
-		</div>
+		</template>
 	</body>
 </html>
