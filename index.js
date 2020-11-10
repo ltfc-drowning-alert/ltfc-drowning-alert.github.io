@@ -242,14 +242,16 @@
 						}
 					}
 					else {
-						const visualAlert = document.importNode(visualAlertTemplate.content, true);
-						const visualAlert_JQ = $(visualAlert);
-						visualAlert_JQ.alert();
-						visualAlert_JQ.on("close.bs.alert", () => {
-							alarm.stop();
-						})
-						document.body.appendChild(visualAlert);
-						alarm.start();
+						if (document.getElementById("visualAlert") === null) {
+							const visualAlert = document.importNode(visualAlertTemplate.content, true);
+							const visualAlert_JQ = $(visualAlert);
+							visualAlert_JQ.alert();
+							visualAlert_JQ.on("close.bs.alert", () => {
+								alarm.stop();
+							});
+							document.body.appendChild(visualAlert);
+							alarm.start();
+						}
 					}
 				}
 				else {
