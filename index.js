@@ -232,8 +232,8 @@
 				const avgProbability = probabilityRecords.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / sampleSize;
 				cameraContainer.querySelector(".probability").textContent = (avgProbability * 100).toFixed(2) + "%";
 				if (avgProbability >= probabilityThreshold) {
-					cameraContainer.classList.add("alertTarget");
 					document.body.classList.add("alertActivated");
+					cameraContainer.classList.add("alertTarget");
 					hasPossibleDrowning = true;
 					if (isTestMode === true) {
 						if (isAudioAlarmOn === false) {
@@ -261,7 +261,6 @@
 				else {
 					if (isTestMode === true) {
 						cameraContainer.classList.remove("alertTarget");
-						document.body.classList.remove("alertActivated");
 					}
 				}
 			}
@@ -273,6 +272,7 @@
 			if (isTestMode === true && isAudioAlarmOn === true) {
 				alarm.stop();
 				isAudioAlarmOn = false;
+				document.body.classList.remove("alertActivated");
 			}
 		}
 		window.requestAnimationFrame(predictLoop);
